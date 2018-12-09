@@ -12,7 +12,7 @@ public class MainModel {
     {
         try
         {
-            Connection conn = ConnectionProvider.getConnection("todo","3306");
+            Connection conn = ConnectionProvider.getConnection("todo");
 
             Statement st = conn.createStatement();
 
@@ -36,7 +36,7 @@ public class MainModel {
     {
         try
         {
-            Connection conn =ConnectionProvider.getConnection("todo","3306");
+            Connection conn =ConnectionProvider.getConnection("todo");
 
             Statement st = conn.createStatement();
 

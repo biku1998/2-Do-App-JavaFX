@@ -108,7 +108,7 @@ public class ServiceProvider {
 
             pwd = sc.nextLine();
 
-            showErrorMessage(pwd);
+            //showErrorMessage(pwd);
 
         }
         catch (Exception e)
