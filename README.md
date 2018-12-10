@@ -6,3 +6,7 @@
 
 ![alt text](https://github.com/biku1998/2-Do-App-JavaFX/blob/master/Screenshots/Screenshot%20Login.png)
 
+# *****************************************************************************************************
+
+![alt text](https://github.com/biku1998/2-Do-App-JavaFX/blob/master/Screenshots/Screenshot-SignUp.png)
+
