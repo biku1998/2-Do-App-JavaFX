@@ -73,7 +73,7 @@ public class SignUpController {
 
         if(name.equals("") || mail.equals("") || passwd.equals(""))
         {
-           ServiceProvider.showErrorMessage("Ooops, You have left an empty field!",rootStackPane);
+           ServiceProvider.showErrorMessage("Ooops, You have left an empty field!",rootStackPane,"Something went wrong !!!!");
         }
         else
         {
@@ -81,18 +81,28 @@ public class SignUpController {
 
             if(!ServiceProvider.emailValidation(mail))
             {
-                ServiceProvider.showErrorMessage("email not valid",rootStackPane);
+                ServiceProvider.showErrorMessage("email not valid",rootStackPane,"Something went wrong !!!!");
             }
             else if(!ServiceProvider.passwordValidation(passwd)) {
-                ServiceProvider.showErrorMessage("password too short",rootStackPane);
+                ServiceProvider.showErrorMessage("password too short",rootStackPane,"Something went wrong !!!!");
             }
             else
             {
                 userToUpdate.add(name);userToUpdate.add(mail);userToUpdate.add(passwd);
 
+
+                // first checking if the user already exist or not.
+                if(MainModel.verifyUserFromFileDB(mail,passwd))
+                {
+                    ServiceProvider.showMessage("email already registered , please login.");
+                    return;
+                }
+
+
                 OtpController.verifyOtp(mail);
 
                 // TODO : write code to change the scene to otp Screen.
+
 
 
                 try
@@ -115,7 +125,8 @@ public class SignUpController {
     public  static void insertUser()
     {
         User u = new User(userToUpdate.get(0),userToUpdate.get(1),userToUpdate.get(2));
-        MainModel.sendDataToDb(u);
+        //MainModel.sendDataToDb(u);
+        MainModel.sendDataTOFileDB(u);
     }
 
 }

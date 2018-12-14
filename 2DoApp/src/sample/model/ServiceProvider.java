@@ -19,18 +19,10 @@ import java.util.Scanner;
 
 public class ServiceProvider {
 
-    public static  void showErrorMessage(String msg, StackPane pane)
+    public static  void showErrorMessage(String msg, StackPane pane,String title)
     {
-        /*
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("");
-        alert.setContentText(msg);
-        alert.showAndWait();
-        */
-        // new code .
 
-        String title  = "Something went wrong !!!!";
+        //String title  = "Something went wrong !!!!";
         JFXDialogLayout dialogContent = new JFXDialogLayout();
         dialogContent.setHeading(new Text(title));
         dialogContent.setBody(new Text(msg));
@@ -55,6 +47,18 @@ public class ServiceProvider {
         //
 
     }
+
+    public static void showMessage(String msg)
+    {
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("");
+        alert.setContentText(msg);
+        alert.showAndWait();
+
+    }
+
 
     public static void  showException( Exception ex )
     {
@@ -155,7 +159,7 @@ public class ServiceProvider {
         String p = String.format("python3  %s/src/sample/api/sendMail.py",pwd);
         String cmd = p+" "+ subject + "  " + otpp + "  " + email;
 
-        System.out.println(cmd);
+        //System.out.println(cmd);
         try
         {
             Runtime rt = Runtime.getRuntime();

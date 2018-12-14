@@ -2,7 +2,9 @@ package sample.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import sample.model.ServiceProvider;
 
@@ -14,12 +16,11 @@ public class OtpController {
     static ArrayList<String> otpData  = new ArrayList();
 
 
-    //Test code
-//    public OtpController() {
-//
-//        verifyOtp("kumarsourabh228edu@gmail.com");
-//    }
+    @FXML
+    private AnchorPane rootPaneOtp;
 
+    @FXML
+    private StackPane rootStackPane;
 
     @FXML
     private TextField otpProvided;
@@ -30,7 +31,7 @@ public class OtpController {
        String otp = otpProvided.getText();
        if (otp.isEmpty())
        {
-           ServiceProvider.showErrorMessage("Please enter otp",new StackPane());
+           ServiceProvider.showErrorMessage("Please enter otp",rootStackPane,"Something went wrong !!!!");
        }
        else
        {
@@ -44,10 +45,21 @@ public class OtpController {
                SignUpController.insertUser();
 
                // TODO : write code to send the user to task manage screen.
+
+               try {
+
+                   // after authentication sending the user to the task page.
+                   AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Task.fxml"));
+                   rootPaneOtp.getChildren().setAll(pane);
+               }
+               catch (Exception g)
+               {
+                   ServiceProvider.showException(g);
+               }
            }
            else
            {
-               ServiceProvider.showErrorMessage("invalid otp",new StackPane());
+               ServiceProvider.showErrorMessage("invalid otp",rootStackPane,"Something went wrong !!!!");
            }
 
        }

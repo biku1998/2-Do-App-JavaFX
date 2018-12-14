@@ -5,13 +5,14 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import sample.model.MainModel;
 import sample.model.ServiceProvider;
+
+import java.io.*;
+import java.util.Scanner;
 
 
 public class LoginController {
@@ -61,14 +62,17 @@ public class LoginController {
 
             if (username.isEmpty() || password.isEmpty())
             {
-                ServiceProvider.showErrorMessage("Empty Fields",rootStackPane);
+                ServiceProvider.showErrorMessage("Empty Fields",rootStackPane,"Something went wrong !!!!");
             }
             else
             {
-                if (MainModel.verifyUser(username,password))
+                if (MainModel.verifyUserFromFileDB(username,password))
                 {
                     try {
-                        // after authentication sending the user to the task page.
+                        // setting the current user.
+                        setUpCurrentUser(username);
+
+                        //sending the user to the task page.
                         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Task.fxml"));
                         rootPaneLogin.getChildren().setAll(pane);
                     }
@@ -79,9 +83,67 @@ public class LoginController {
                 }
                 else
                 {
-                    ServiceProvider.showErrorMessage("you are not registered, sign up",rootStackPane);
+                    ServiceProvider.showErrorMessage("you are not registered, sign up",rootStackPane,"Something went wrong !!!!");
                 }
             }
         });
     }
+
+    private void setUpCurrentUser(String email)
+    {
+        try
+        {
+            String [] cmd = {"pwd"};
+            ProcessBuilder pb = new ProcessBuilder(cmd);
+
+            Process p = pb.start();
+
+            OutputStream os = p.getOutputStream();
+
+            PrintStream ps = new PrintStream(os);
+
+            Scanner sc = new Scanner(new InputStreamReader(p.getInputStream()));
+
+            String pwd = sc.nextLine();
+
+            String path = pwd+"/src/sample/Data/currentUser.txt";
+
+            FileOutputStream fos = new FileOutputStream(path,false);
+
+            //fos.write(email.getBytes());
+
+            FileInputStream fis = new FileInputStream(pwd+"/src/sample/Data/user.txt");
+
+            Scanner scanner = new Scanner(fis);
+
+            while(scanner.hasNext())
+            {
+                String identifier = scanner.nextLine().trim();
+                String nameData = scanner.nextLine().split(":")[1].trim();
+                String emailData = scanner.nextLine().split(":")[1].trim();
+                String passwordData = scanner.nextLine().split(":")[1].trim();
+//
+//                System.out.println(identifier);
+//                System.out.println(nameData);
+//                System.out.println(emailData);
+//                System.out.println(passwordData);
+
+                if (email.equalsIgnoreCase(emailData))
+                {
+                    String data = String.format("!\nname : %s\nemail : %s\npassword : %s\n",nameData,
+                            emailData,passwordData);
+                    fos.write(data.getBytes());
+                }
+
+            }
+
+
+
+        }
+        catch (Exception e)
+        {
+            ServiceProvider.showException(e);
+        }
+    }
+
 }
