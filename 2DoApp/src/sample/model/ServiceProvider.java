@@ -1,10 +1,17 @@
 package sample.model;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.io.*;
 import java.util.Random;
@@ -12,14 +19,41 @@ import java.util.Scanner;
 
 public class ServiceProvider {
 
-    public static  void showErrorMessage(String msg)
+    public static  void showErrorMessage(String msg, StackPane pane)
     {
+        /*
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("");
         alert.setContentText(msg);
-
         alert.showAndWait();
+        */
+        // new code .
+
+        String title  = "Something went wrong !!!!";
+        JFXDialogLayout dialogContent = new JFXDialogLayout();
+        dialogContent.setHeading(new Text(title));
+        dialogContent.setBody(new Text(msg));
+
+        JFXButton close = new JFXButton("close");
+        close.setButtonType(JFXButton.ButtonType.RAISED);
+        close.setStyle("-fx-background-color : #e91e63;-fx-text-fill: #ffffff;");
+        //close.setStyle("-fx-text-fill: #ffffff");
+
+        dialogContent.setActions(close);
+
+        JFXDialog dialog = new JFXDialog(pane,dialogContent,JFXDialog.DialogTransition.RIGHT);
+
+        close.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                dialog.close();
+            }
+        });
+        dialog.show();
+
+        //
+
     }
 
     public static void  showException( Exception ex )

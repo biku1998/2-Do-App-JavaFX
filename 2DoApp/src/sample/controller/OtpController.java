@@ -3,6 +3,7 @@ package sample.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import sample.model.ServiceProvider;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class OtpController {
        String otp = otpProvided.getText();
        if (otp.isEmpty())
        {
-           ServiceProvider.showErrorMessage("Please enter otp");
+           ServiceProvider.showErrorMessage("Please enter otp",new StackPane());
        }
        else
        {
@@ -46,7 +47,7 @@ public class OtpController {
            }
            else
            {
-               ServiceProvider.showErrorMessage("invalid otp");
+               ServiceProvider.showErrorMessage("invalid otp",new StackPane());
            }
 
        }

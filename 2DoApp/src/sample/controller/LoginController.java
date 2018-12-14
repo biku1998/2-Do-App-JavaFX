@@ -1,32 +1,37 @@
 package sample.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import sample.model.MainModel;
 import sample.model.ServiceProvider;
 
 
 public class LoginController {
 
-
+    @FXML
+    private StackPane rootStackPane;
     @FXML
     private AnchorPane rootPaneLogin;
 
     @FXML
-    private TextField loginUsername;
+    private JFXTextField loginUsername;
 
     @FXML
-    private PasswordField loginPassword;
+    private JFXPasswordField loginPassword;
 
     @FXML
-    private Button loginLoginBtn;
+    private JFXButton loginLoginBtn;
 
     @FXML
-    private Button loginSignUpButton;
+    private JFXButton loginSignUpButton;
 
 
     @FXML
@@ -56,13 +61,14 @@ public class LoginController {
 
             if (username.isEmpty() || password.isEmpty())
             {
-                ServiceProvider.showErrorMessage("Empty Fields");
+                ServiceProvider.showErrorMessage("Empty Fields",rootStackPane);
             }
             else
             {
                 if (MainModel.verifyUser(username,password))
                 {
                     try {
+                        // after authentication sending the user to the task page.
                         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Task.fxml"));
                         rootPaneLogin.getChildren().setAll(pane);
                     }
@@ -73,7 +79,7 @@ public class LoginController {
                 }
                 else
                 {
-                    ServiceProvider.showErrorMessage("you are not registered, sign up");
+                    ServiceProvider.showErrorMessage("you are not registered, sign up",rootStackPane);
                 }
             }
         });

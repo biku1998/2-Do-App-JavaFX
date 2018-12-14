@@ -1,9 +1,13 @@
 package sample.controller;
 
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import sample.model.MainModel;
 import sample.model.ServiceProvider;
 import javafx.event.ActionEvent;
@@ -20,19 +24,22 @@ public class SignUpController {
     private static ArrayList<String> userToUpdate = new ArrayList<>();
 
     @FXML
+    private StackPane rootStackPane;
+
+    @FXML
     private AnchorPane signUpRootPane;
 
     @FXML
-    private TextField username;
+    private JFXTextField username;
 
     @FXML
-    private TextField email;
+    private JFXTextField email;
 
     @FXML
-    private PasswordField password;
+    private JFXPasswordField password;
 
     @FXML
-    private Button signUpLoginbtn;
+    private JFXButton signUpLoginbtn;
 
 
     @FXML
@@ -66,7 +73,7 @@ public class SignUpController {
 
         if(name.equals("") || mail.equals("") || passwd.equals(""))
         {
-           ServiceProvider.showErrorMessage("Ooops, You have left an empty field!");
+           ServiceProvider.showErrorMessage("Ooops, You have left an empty field!",rootStackPane);
         }
         else
         {
@@ -74,10 +81,10 @@ public class SignUpController {
 
             if(!ServiceProvider.emailValidation(mail))
             {
-                ServiceProvider.showErrorMessage("email not valid");
+                ServiceProvider.showErrorMessage("email not valid",rootStackPane);
             }
             else if(!ServiceProvider.passwordValidation(passwd)) {
-                ServiceProvider.showErrorMessage("password too short");
+                ServiceProvider.showErrorMessage("password too short",rootStackPane);
             }
             else
             {
