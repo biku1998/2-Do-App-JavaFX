@@ -39,18 +39,8 @@ public class ConnectionProvider {
 
         try
         {
-            String [] cmd = {"pwd"};
-            ProcessBuilder pb = new ProcessBuilder(cmd);
 
-            Process p = pb.start();
-
-            OutputStream os = p.getOutputStream();
-
-            PrintStream ps = new PrintStream(os);
-
-            Scanner sc = new Scanner(new InputStreamReader(p.getInputStream()));
-
-            String pwd = sc.nextLine();
+            String pwd = ServiceProvider.getPath();
 
             String path = pwd+"/src/sample/config/configDB.txt";
 

@@ -88,6 +88,11 @@ public class SignUpController {
             }
             else
             {
+                // code for duplicate or subset names and name containing spaces.
+                if (name.contains(" "))
+                {
+                    name = name.replace(" ","~");
+                }
                 userToUpdate.add(name);userToUpdate.add(mail);userToUpdate.add(passwd);
 
 
@@ -99,7 +104,10 @@ public class SignUpController {
                 }
 
 
+
                 OtpController.verifyOtp(mail);
+
+                OtpController.setMail(mail);
 
                 // TODO : write code to change the scene to otp Screen.
 
@@ -127,6 +135,7 @@ public class SignUpController {
         User u = new User(userToUpdate.get(0),userToUpdate.get(1),userToUpdate.get(2));
         //MainModel.sendDataToDb(u);
         MainModel.sendDataTOFileDB(u);
+        ServiceProvider.createFileForTask(u.getName());
     }
 
 }

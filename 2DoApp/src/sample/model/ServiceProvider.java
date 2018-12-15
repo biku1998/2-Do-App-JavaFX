@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -46,6 +47,41 @@ public class ServiceProvider {
 
         //
 
+    }
+
+
+    public static ArrayList<String> getAllEmails()
+    {
+
+        try
+        {
+
+            String pwd = getPath();
+            String path = pwd+"/src/sample/Data/user.txt";
+            FileInputStream fis = new FileInputStream(path);
+
+            Scanner scanner = new Scanner(fis);
+
+            ArrayList<String> emails = new ArrayList<>();
+
+            while(scanner.hasNext())
+            {
+                String identifier = scanner.nextLine();
+                String nameData = scanner.nextLine().split(":")[1];
+                String emailData = scanner.nextLine().split(":")[1];
+                String passwordData = scanner.nextLine().split(":")[1];
+
+                emails.add(emailData);
+            }
+
+            return emails;
+        }
+        catch (Exception e)
+        {
+            showException(e);
+        }
+
+        return null;
     }
 
     public static void showMessage(String msg)
@@ -133,18 +169,8 @@ public class ServiceProvider {
         String pwd = "";
         try
         {
-            String [] cmd = {"pwd"};
-            ProcessBuilder pb = new ProcessBuilder(cmd);
 
-            Process p = pb.start();
-
-            OutputStream os = p.getOutputStream();
-
-            PrintStream ps = new PrintStream(os);
-
-            Scanner sc = new Scanner(new InputStreamReader(p.getInputStream()));
-
-            pwd = sc.nextLine();
+            pwd = getPath();
 
             //showErrorMessage(pwd);
 
@@ -173,5 +199,50 @@ public class ServiceProvider {
         return String.valueOf(n);
 
     }
+
+    public static String getPath()
+    {
+        try
+        {
+            String [] cmd = {"pwd"};
+            ProcessBuilder pb = new ProcessBuilder(cmd);
+
+            Process p = pb.start();
+
+            OutputStream os = p.getOutputStream();
+
+            PrintStream ps = new PrintStream(os);
+
+            Scanner sc = new Scanner(new InputStreamReader(p.getInputStream()));
+
+            String pwd = sc.nextLine();
+
+            return pwd;
+        }
+        catch (Exception e)
+        {
+            showException(e);
+        }
+
+        return null;
+    }
+
+    public static void createFileForTask(String username)
+    {
+        try
+        {
+            String pwd = ServiceProvider.getPath();
+            String path = pwd+"/src/sample/Data/Tasks/"+username+"Task.txt";
+
+            FileOutputStream fos = new FileOutputStream(path,true);
+
+        }
+        catch (Exception e)
+        {
+            showException(e);
+        }
+    }
+
+
 
 }

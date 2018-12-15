@@ -1,8 +1,4 @@
 !
 name : Sourabh
-email : kumarsourabh228edu@gmail.com
-password : ashok9234
-!
-name : biku
-email : biku.kumar.280598@gmail.com
+email : kumarsourabh228@yahoo.com
 password : ashok9234

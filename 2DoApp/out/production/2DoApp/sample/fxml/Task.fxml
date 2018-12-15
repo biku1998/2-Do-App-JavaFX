@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #e91E63;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.TaskController">
+<AnchorPane fx:id="TaskRootPane" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #e91E63;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.TaskController">
    <children>
       <Label alignment="CENTER" layoutX="245.0" layoutY="4.0" prefHeight="43.0" prefWidth="193.0" text="Your Tasks" textFill="WHITE">
          <font>
@@ -25,7 +25,7 @@
       </ImageView>
       <Label fx:id="currentUserLabel" alignment="CENTER" layoutX="500.0" layoutY="14.0" prefHeight="34.0" prefWidth="193.0" text="Hello user" textFill="WHITE">
          <font>
-            <Font name="Monospaced Regular" size="19.0" />
+            <Font name="SansSerif Regular" size="19.0" />
          </font>
       </Label>
       <StackPane fx:id="rootStackPane" layoutY="58.0" prefHeight="346.0" prefWidth="711.0">
@@ -34,7 +34,7 @@
                <children>
                   <Line endX="-92.0" endY="254.0" layoutX="446.0" layoutY="77.0" startX="-92.0" startY="-60.0" />
                  
-                  <JFXButton fx:id="addTaskButton" layoutX="292.0" layoutY="116.0" onAction="#addTask" prefHeight="34.0" prefWidth="51.0" ripplerFill="WHITE" style="-fx-background-color: #e91E63;" text="+" textFill="WHITE">
+                  <JFXButton fx:id="addTaskButton" buttonType="RAISED" layoutX="292.0" layoutY="116.0" onAction="#addTask" prefHeight="34.0" prefWidth="51.0" ripplerFill="WHITE" style="-fx-background-color: #e91E63;" text="+" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -55,7 +55,7 @@
                         <Font name="SansSerif Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="taskTORemove" focusColor="#e91e63" labelFloat="true" layoutX="20.0" layoutY="268.0" prefHeight="39.0" prefWidth="257.0" promptText="Enter task ..">
+                  <JFXTextField fx:id="taskTORemove" focusColor="#e91e63" labelFloat="true" layoutX="20.0" layoutY="268.0" prefHeight="39.0" prefWidth="257.0" promptText="Enter task to remove  ..">
                      <font>
                         <Font name="Ubuntu Mono" size="16.0" />
                      </font>
@@ -69,5 +69,6 @@
             </AnchorPane>
          </children>
       </StackPane>
+      <JFXButton fx:id="TaskLogoutBtn" buttonType="RAISED" layoutX="27.0" layoutY="18.0" prefHeight="27.0" prefWidth="93.0" ripplerFill="WHITE" style="-fx-background-color: #ed4b82 #ed4b82;" text="logout" textFill="WHITE" />
    </children>
 </AnchorPane>

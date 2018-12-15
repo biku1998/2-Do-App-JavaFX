@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.jfoenix.controls.JFXAutoCompletePopup;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -66,11 +67,11 @@ public class LoginController {
             }
             else
             {
-                if (MainModel.verifyUserFromFileDB(username,password))
+                if (MainModel.verifyUserFromFileDB(username.trim(),password.trim()))
                 {
                     try {
                         // setting the current user.
-                        setUpCurrentUser(username);
+                        setUpCurrentUser(username.trim());
 
                         //sending the user to the task page.
                         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Task.fxml"));
@@ -87,24 +88,30 @@ public class LoginController {
                 }
             }
         });
+
+
+        JFXAutoCompletePopup<String> autoCompletePopup = new JFXAutoCompletePopup<>();
+        //autoCompletePopup.setStyle("-fx-background-color : #e91e63;");
+        autoCompletePopup.setSelectionHandler(event -> loginUsername.setText(event.getObject()));
+        autoCompletePopup.getSuggestions().addAll(ServiceProvider.getAllEmails());
+        loginUsername.textProperty().addListener(observable ->{
+            autoCompletePopup.filter(s -> s.contains(loginUsername.getText()));
+            if(!autoCompletePopup.getFilteredSuggestions().isEmpty()){
+                autoCompletePopup.show(loginUsername);
+            }else{
+                autoCompletePopup.hide();
+            }
+        });
+
+
     }
 
     private void setUpCurrentUser(String email)
     {
         try
         {
-            String [] cmd = {"pwd"};
-            ProcessBuilder pb = new ProcessBuilder(cmd);
 
-            Process p = pb.start();
-
-            OutputStream os = p.getOutputStream();
-
-            PrintStream ps = new PrintStream(os);
-
-            Scanner sc = new Scanner(new InputStreamReader(p.getInputStream()));
-
-            String pwd = sc.nextLine();
+            String pwd = ServiceProvider.getPath();
 
             String path = pwd+"/src/sample/Data/currentUser.txt";
 
@@ -122,11 +129,7 @@ public class LoginController {
                 String nameData = scanner.nextLine().split(":")[1].trim();
                 String emailData = scanner.nextLine().split(":")[1].trim();
                 String passwordData = scanner.nextLine().split(":")[1].trim();
-//
-//                System.out.println(identifier);
-//                System.out.println(nameData);
-//                System.out.println(emailData);
-//                System.out.println(passwordData);
+
 
                 if (email.equalsIgnoreCase(emailData))
                 {
