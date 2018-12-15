@@ -7,10 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/2DoApp_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/2DoApp_jar/2DoApp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/2DoApp_jar/2DoApp.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/2DoApp_jar/2DoApp.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/Data/Tasks/SourabhTask.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/Data/Tasks/Sourabh~kumarTask.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/Data/currentUser.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/Data/currentUser.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/Data/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/Data/user.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/OtpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/OtpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/SignUpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/SignUpController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/TaskController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/TaskController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/TaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/controller/TaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/model/ConnectionProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/model/ConnectionProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/model/MainModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/model/MainModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/model/ServiceProvider$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/model/ServiceProvider$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/model/ServiceProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/model/ServiceProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/2DoApp/sample/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2DoApp/sample/user/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Data/Tasks/SourabhTask.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Data/Tasks/Sourabh~kumarTask.txt" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,7 +85,30 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Data/user.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Data/currentUser.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/controller/SignUpController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="641">
+              <caret line="137" column="55" selection-start-line="137" selection-start-column="55" selection-end-line="137" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -116,8 +158,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1366" />
-    <option name="height" value="768" />
+    <option name="y" value="23" />
+    <option name="width" value="1920" />
+    <option name="height" value="1013" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -129,7 +172,53 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="2DoApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DoApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2DoApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DoApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2DoApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DoApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2DoApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DoApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2DoApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DoApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2DoApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DoApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToClass.includeLibraries" value="false" />
@@ -140,10 +229,10 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544891842623" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544897508991" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -284,9 +373,9 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="768" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="1013" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.13863637" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13844515" />
       <window_info id="Structure" order="1" weight="0.19488817" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -295,7 +384,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32745314" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36024845" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35939196" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -375,12 +464,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/OtpConfirm.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/2DoApp.iml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -402,12 +491,12 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/login.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-16">
           <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/api/config.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -426,12 +515,12 @@
     <entry file="file://$PROJECT_DIR$/src/sample/Data/Hello SourabhTask.txt" />
     <entry file="file://$PROJECT_DIR$/src/sample/Data/bikuTask.txt" />
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/Task.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -441,12 +530,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/signUp.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="24" column="164" selection-start-line="24" selection-start-column="156" selection-end-line="24" selection-end-column="164" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://$PROJECT_DIR$/src/sample/api/jfoenix-9.0.8.jar!/com/jfoenix/controls/JFXAutoCompletePopup.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -513,16 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/controller/SignUpController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2440">
-          <caret line="137" column="55" selection-start-line="137" selection-start-column="55" selection-end-line="137" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/ServiceProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4320">
@@ -558,6 +637,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Data/currentUser.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/controller/SignUpController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="137" column="55" selection-start-line="137" selection-start-column="55" selection-end-line="137" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
@@ -601,7 +690,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9</last-edited>
+          <last-edited>10</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -618,7 +707,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
