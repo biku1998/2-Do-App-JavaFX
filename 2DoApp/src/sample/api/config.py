@@ -1,2 +1,2 @@
 EMAIL = "2dotaskapp@gmail.com"
-PASSWORD = "ashok9234"
+PASSWORD = "passwordfor2doapp"
