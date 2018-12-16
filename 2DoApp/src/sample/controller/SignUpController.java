@@ -5,15 +5,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import sample.model.MainModel;
 import sample.model.ServiceProvider;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+
 import sample.user.User;
 
 import java.util.ArrayList;
