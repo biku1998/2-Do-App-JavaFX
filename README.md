@@ -13,9 +13,9 @@
 
 # For Running the App on Windows Machine.
 
-## first run the 2-Do-App-JavaFX\2DoApp\src\sample\DataBaseConfig\CreateDatabaseSupport.java file to create the required DB.Enter port no , username , password
-## for your mysql DB.
+## first run the 2-Do-App-JavaFX\2DoApp\src\sample\DataBaseConfig\CreateDatabaseSupport.java file to create the required DB.Enter port no , username , password for your mysql DB.
 ## open this link and download the file(https://drive.google.com/open?id=13iB2YUMuuUF0ubKxxoYwqRRMBGtSPpWT).
+## the exe file will only run if your mysql password and username is root.You can build the exe if you have diffrent username or passowrd using intellij artifacts.
 
 # Note : Application may not repond for few seconds after signUp page as SMTP Server takes time to send Email.  
 
