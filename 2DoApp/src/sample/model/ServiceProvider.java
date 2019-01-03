@@ -1,5 +1,4 @@
 package sample.model;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -160,44 +159,11 @@ public class ServiceProvider {
     public static String sendOtp(String email)
     {
         Random rnd = new Random();
-        int n = 100000 + rnd.nextInt(900000);
+        String otp = String.valueOf(100000 + rnd.nextInt(900000));
 
-        String otpp = "OTP::"+n+"::";
+        EmailServer.sendMail(email,otp);
 
-        String subject = "ConfirmYourEmail";
-
-        String pwd = "";
-        try
-        {
-
-            pwd = getPath();
-
-            //showErrorMessage(pwd);
-
-        }
-        catch (Exception e)
-        {
-            showException(e);
-        }
-
-
-
-        String p = String.format("python3  %s/src/sample/api/sendMail.py",pwd);
-        String cmd = p+" "+ subject + "  " + otpp + "  " + email;
-
-        //System.out.println(cmd);
-        try
-        {
-            Runtime rt = Runtime.getRuntime();
-            rt.exec(cmd);
-        }
-        catch (Exception e)
-        {
-            ServiceProvider.showException(e);
-        }
-
-        return String.valueOf(n);
-
+        return otp;
     }
 
     public static String getPath()

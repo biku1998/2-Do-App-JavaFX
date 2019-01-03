@@ -1,16 +1,17 @@
 package sample.controller;
-
+import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import sample.model.ConnectionProvider;
 import sample.model.ServiceProvider;
-
-import java.io.*;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 
 public class OtpController {
@@ -18,6 +19,12 @@ public class OtpController {
     static ArrayList<String> otpData  = new ArrayList();
 
     public static String Email;
+    public static String Name;
+
+    public static  void setName(String name)
+    {
+        OtpController.Name = name;
+    }
 
     public static  void setMail(String email)
     {
@@ -57,10 +64,10 @@ public class OtpController {
                try {
                    // updating the current user.
 
-                   updateCurrentUser(Email);
+                   updateCurrentUser(Email,Name);
 
                    // after authentication sending the user to the task page.
-                   AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Task.fxml"));
+                   AnchorPane pane = FXMLLoader.load(getClass().getResource("/sample/fxml/Task.fxml"));
                    rootPaneOtp.getChildren().setAll(pane);
                }
                catch (Exception g)
@@ -76,49 +83,20 @@ public class OtpController {
        }
     }
 
-    private void updateCurrentUser(String email) {
+    public static void updateCurrentUser(String email,String name) {
         try
         {
+            // adding current user to DB.
 
+            Connection conn  = ConnectionProvider.getConnection("TODO");
 
-            String pwd = ServiceProvider.getPath();
+            Statement st = conn.createStatement();
 
-            String path = pwd+"/src/sample/Data/currentUser.txt";
+            st.execute("DELETE FROM currentUser");
 
+            String sql  = String.format("insert into currentUser(email,name)values('%s','%s')",email,name);
 
-
-            FileOutputStream fos = new FileOutputStream(path,false);
-
-            //fos.write(email.getBytes());
-
-            FileInputStream fis = new FileInputStream(pwd+"/src/sample/Data/user.txt");
-
-            Scanner scanner = new Scanner(fis);
-
-            String nameData = "";
-
-            while(scanner.hasNext())
-            {
-                String identifier = scanner.nextLine().trim();
-                nameData = scanner.nextLine().split(":")[1].trim();
-                String emailData = scanner.nextLine().split(":")[1].trim();
-                String passwordData = scanner.nextLine().split(":")[1].trim();
-
-
-                if (email.equalsIgnoreCase(emailData))
-                {
-                    String data = String.format("!\nname : %s\nemail : %s\npassword : %s\n",nameData,
-                            emailData,passwordData);
-                    fos.write(data.getBytes());
-                }
-
-            }
-
-            String path2 = pwd+"/src/sample/Data/Tasks/"+nameData+"Task.txt";
-
-            FileOutputStream fos2 = new FileOutputStream(path2,true);
-
-
+            st.execute(sql);
 
         }
         catch (Exception e)
@@ -128,11 +106,10 @@ public class OtpController {
 
     }
 
-    public static void  verifyOtp(String email)
+    public static void  sendAndSaveOTP(String email)
     {
-
         String otpSent = ServiceProvider.sendOtp(email);
-
+        //System.out.println(otpSent);
         otpData.add(otpSent);
     }
 

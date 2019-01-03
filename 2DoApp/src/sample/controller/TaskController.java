@@ -6,17 +6,22 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.WeakEventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import org.controlsfx.control.textfield.TextFields;
+import sample.model.ConnectionProvider;
 import sample.model.ServiceProvider;
 
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,33 +60,77 @@ public class TaskController {
         // adding a new task.
         String currentUser = currentUserLabel.getText().split(" ")[1].trim();
 
-        makeTaskFile(currentUser);
+        String t  = newTask.getText().trim();
 
+        if (t.equals(""))
+        {
+            ServiceProvider.showErrorMessage("please add task",rootStackPane,"Empty fields");
+            return;
+        }
+
+        if (getAllTaskList(fetchCurrentUser()[1]).contains(t)){
+            ServiceProvider.showErrorMessage("Task already added !!",rootStackPane,"Hello "+fetchCurrentUser()[0]);
+            return;
+        }
+        //makeTaskFile(currentUser);
+
+        // adding task to the DB.
+
+       try {
+
+           Connection conn = ConnectionProvider.getConnection("TODO");
+
+           Statement st = conn.createStatement();
+
+           // first get all the task if present.
+
+           String prevTasks  = "";
+
+           ResultSet rs  =  st.executeQuery("select * from task where email  = '"+fetchCurrentUser()[1]+"'");
+
+           if (rs.next()){
+               prevTasks = rs.getString("task");
+               prevTasks = prevTasks+","+t;
+               st.execute("update  task set task = '"+prevTasks+"' where email = '"+fetchCurrentUser()[1]+"' ");
+           }
+           else{
+               st.execute("insert into task(email,task) values('"+fetchCurrentUser()[1]+"','"+t+"')");
+           }
+
+       }catch (Exception e){
+           ServiceProvider.showException(e);
+       }
         // clearing the task field.
         newTask.setText("");
-
         // refreshing the Task Table.
-        updateTheTaskList(currentUser);
+        updateTheTaskList(fetchCurrentUser()[1]);
+        addAutoCompleteToTask();
     }
 
-    private  ArrayList<String> getAllTaskList(String user)
+    private void addAutoCompleteToTask(){
+        ArrayList<String> allTask = getAllTaskList(fetchCurrentUser()[1]);
+        TextFields.bindAutoCompletion(taskTORemove,allTask);
+    }
+
+    private  ArrayList<String> getAllTaskList(String email)
     {
         try
         {
-
-            String currentUser = currentUserLabel.getText().split(" ")[1].trim();
-            String pwd = ServiceProvider.getPath();
-            String path = pwd+"/src/sample/Data/Tasks/"+currentUser+"Task.txt";
-
-            FileInputStream fis  =  new FileInputStream(path);
-
             ArrayList<String> tasks =  new ArrayList<>();
 
-            Scanner scanner = new Scanner(fis);
+            Connection conn = ConnectionProvider.getConnection("TODO");
 
-            while(scanner.hasNext())
-            {
-                tasks.add(scanner.nextLine().trim());
+            Statement st = conn.createStatement();
+
+            ResultSet rs = st.executeQuery("select * from task where email = '"+email+"' ");
+
+            String [] t = {};
+            while (rs.next()){
+                t = rs.getString("task").split(",");
+            }
+
+            for (String i : t) {
+                tasks.add(i);
             }
 
             return tasks;
@@ -99,10 +148,16 @@ public class TaskController {
     @FXML
     void removeTask(ActionEvent event) {
 
-        String removeTask  = taskTORemove.getText().trim();
+        String removeT  = taskTORemove.getText().trim();
 
+        if (removeT.isEmpty()){
+            ServiceProvider.showErrorMessage("Empty task field !!",rootStackPane,"OOPS !!");
+            return;
+        }
+
+        String info  [] = fetchCurrentUser();
         // checking if task exist or not
-        if (!getAllTaskList(currentUserLabel.getText().split(" ")[1].trim()).contains(removeTask))
+        if (!(getAllTaskList(info[1])).contains(removeT))
         {
             ServiceProvider.showErrorMessage("Task does'nt exist",rootStackPane,"Hii "+currentUserLabel.getText().split(" ")[1].trim());
             return;
@@ -110,73 +165,67 @@ public class TaskController {
 
         try
         {
+            Connection connection = ConnectionProvider.getConnection("TODO");
 
-        String currentUser = currentUserLabel.getText().split(" ")[1].trim();
-        String pwd = ServiceProvider.getPath();
-        String path = pwd+"/src/sample/Data/Tasks/"+currentUser+"Task.txt";
-
-        FileInputStream fis  =  new FileInputStream(path);
+            Statement st = connection.createStatement();
 
 
+            // code for removing the task from DB and Update View.
 
-        ArrayList<String> tasks =  new ArrayList<>();
+            ArrayList<String> taskList  = getAllTaskList(info[1]);
 
-        Scanner scanner = new Scanner(fis);
-        boolean flag = false;
-        while(scanner.hasNext())
-        {
-            flag = true;
-            String task = scanner.nextLine().trim();
-            if ( ! task.equalsIgnoreCase(removeTask))
-            {
-                tasks.add(task);
+            // removing the task from task list.
+
+            taskList.remove(removeT);
+
+            // updating the DB.
+
+            String taskData ="";
+
+            for (String t:
+                 taskList) {
+                taskData = taskData +t+",";
             }
-        }
 
-        if (flag)
-        {
-            String data = "";
-            for (String t : tasks)
-            {
-                data = data + t + "\n";
-            }
-            // for debug : ServiceProvider.showErrorMessage(data,rootStackPane,"details");
-            FileOutputStream fos = new FileOutputStream(path,false);
-            fos.write(data.getBytes());
-            updateTheTaskList(currentUserLabel.getText().split(" ")[1].trim());
+            String sql  = "update task set task = '"+taskData+"' where email = '"+info[1]+"'";
+            st.execute(sql);
 
-            ServiceProvider.showErrorMessage("Task removed Successfully",rootStackPane,"Hii "+currentUser);
+            updateTheTaskList(info[1]);
 
+            ServiceProvider.showErrorMessage("Task removed Successfully",rootStackPane,"Hii "+info[0]);
             taskTORemove.setText("");
+
         }
-        else
-        {
-            ServiceProvider.showErrorMessage("Oops !! Task list is empty ",rootStackPane,"Hii "+currentUser);
+        catch (Exception e){
+            ServiceProvider.showException(e);
         }
-
-
-
-
-    }
-        catch (Exception e)
-    {
-        ServiceProvider.showException(e);
-    }
-
+        addAutoCompleteToTask();
     }
 
     @FXML
     public void initialize()
     {
-        String name = fetchCurrentUser();
-        currentUserLabel.setText("Hello "+name);
-        updateTheTaskList(name);
+        String [] info = fetchCurrentUser();
+        // checking for current user. if there is not current user then setting the view to login.
+        if (info[0] == ""){
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/sample/fxml/login.fxml"));
+                TaskRootPane.getChildren().setAll(pane);
+                return;
+            }
+            catch (Exception e)
+            {
+                ServiceProvider.showException(e);
+            }
+        }
+        currentUserLabel.setText("Hello "+info[0]);
+        updateTheTaskList(info[1]);
 
         TaskLogoutBtn.setOnAction(actionEvent -> {
 
             // sending user to login page
             try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/sample/fxml/login.fxml"));
                 TaskRootPane.getChildren().setAll(pane);
             }
             catch (Exception e)
@@ -187,7 +236,7 @@ public class TaskController {
 
         // TextFiled autocomplete code.
 
-        textAutoComplete();
+       // textAutoComplete();
 
         //
 
@@ -199,46 +248,34 @@ public class TaskController {
                 event.consume();
             }
         });
+        addAutoCompleteToTask();
     }
 
-    public void textAutoComplete()
-    {
-        JFXAutoCompletePopup<String> autoCompletePopup = new JFXAutoCompletePopup<>();
-        autoCompletePopup.setSelectionHandler(event -> taskTORemove.setText(event.getObject()));
-        autoCompletePopup.getSuggestions().addAll(getAllTaskList(currentUserLabel.getText().split(" ")[1].trim()));
-        taskTORemove.textProperty().addListener(observable ->{
-            autoCompletePopup.filter(s -> s.contains(taskTORemove.getText()));
-            if(!autoCompletePopup.getFilteredSuggestions().isEmpty()){
-                autoCompletePopup.show(taskTORemove);
-            }else{
-                autoCompletePopup.hide();
-            }
-        });
-    }
-
-    private String fetchCurrentUser() {
+    private String[] fetchCurrentUser() {
 
         try
         {
 
-            String pwd = ServiceProvider.getPath();
+            //fetching current user from DB.
 
-            String path = pwd+"/src/sample/Data/currentUser.txt";
-            FileInputStream fis = new FileInputStream(path);
-            Scanner scanner = new Scanner(fis);
+            Connection conn = ConnectionProvider.getConnection("TODO");
 
+            Statement st = conn.createStatement();
 
+            ResultSet rs = st.executeQuery("select * from currentUser");
 
-            while (scanner.hasNext())
-            {
-                String id = scanner.nextLine().trim();
-                String nameData = scanner.nextLine().split(":")[1].trim();
-                String emailData = scanner.nextLine().split(":")[1].trim();
-                String passwordData = scanner.nextLine().split(":")[1].trim();
+            String email = "";
+            String name = "";
 
-                return nameData;
-
+            while(rs.next()){
+                email = rs.getString("email");
+                name = rs.getString("name");
             }
+
+            String [] info = {name,email};
+
+            return info;
+
 
         }
         catch (Exception e)
@@ -249,73 +286,33 @@ public class TaskController {
         return null;
     }
 
-    private void makeTaskFile(String currentUser) {
-        // this function will create a task file for user provided.
-        try
-        {
-
-
-            String pwd = ServiceProvider.getPath();
-            String path = pwd+"/src/sample/Data/Tasks/"+currentUser+"Task.txt";
-
-            FileOutputStream fos = new FileOutputStream(path,true);
-
-            String t = newTask.getText();
-
-            if (t.equals(""))
-            {
-                ServiceProvider.showErrorMessage("please add task",rootStackPane,"Empty fields");
-                return;
-            }
-
-            String Task = String.format("%s\n",t);
-
-            fos.write(Task.getBytes());
-
-            // giving notification.
-
-            ServiceProvider.showErrorMessage("Task added Successfully",rootStackPane,"Hii "+currentUser);
-
-            textAutoComplete();
-
-
-        }
-        catch (Exception e)
-        {
-            ServiceProvider.showException(e);
-        }
-
-
-    }
 
     // for updating the Task list.
-    private void updateTheTaskList(String currentUser) {
+    private void updateTheTaskList(String email) {
         taskList.getItems().clear();
         try
         {
+            // adding task for user.
 
-            String pwd = ServiceProvider.getPath();
-            String path = pwd+"/src/sample/Data/Tasks/"+currentUser+"Task.txt";
+            String [] tasks = {};
 
-            FileInputStream fis = new FileInputStream(path);
+            Connection conn = ConnectionProvider.getConnection("TODO");
 
-            ArrayList<String> tasks = new ArrayList<>();
+            Statement st = conn.createStatement();
 
-            Scanner scanner = new Scanner(fis);
+            ResultSet rs  = st.executeQuery("select *from Task where email = '"+email+"' ");
 
-            while(scanner.hasNext())
-            {
-                String task = scanner.nextLine().trim();
-                tasks.add(task);
+            while(rs.next()){
+                tasks = rs.getString("task").split(",");
             }
+
             int sno = 1;
             for (String t:tasks) {
-                taskList.getItems().add(new Label(sno +"  :  "+ t));
-                sno++;
+                if (!t.isEmpty()) {
+                    taskList.getItems().add(new Label(sno + "  :  " + t));
+                    sno++;
+                }
             }
-
-            textAutoComplete();
-
         }
         catch (Exception e)
         {

@@ -1,0 +1,33 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="2DoApp">
+    <output-path>$PROJECT_DIR$/out/artifacts/2DoApp</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="linuxIcon" value="$PROJECT_DIR$/src/AppIcon.png" />
+            <option name="macIcon" value="$PROJECT_DIR$/src/AppIconApple.icns" />
+            <option name="windowsIcon" value="$PROJECT_DIR$/src/AppIconW.ico" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="2DoApp.jar">
+        <element id="module-output" name="2DoApp" />
+      </element>
+      <element id="library" level="project" name="activation-1.1.1" />
+      <element id="library" level="project" name="controlsfx-8.40.11" />
+      <element id="library" level="project" name="javax.mail" />
+      <element id="library" level="project" name="jfoenix-9.0.8" />
+      <element id="library" level="project" name="mysql-connector-java-8.0.12" />
+    </root>
+  </artifact>
+</component>

@@ -5,11 +5,17 @@
 
 # Instructions to run.
 
-# open the project with Intellij IDE.
-# edit the username and password inside the config file which is present inside src/sample/api/config.py 
-  Insert a gmail account and password by which you will send OTP. Allow 3rd party app permission from your google dashboard.
-  by default i have provided a gmail which works fine.
-# run the project
+## open the project with Intellij IDE.
+## open the project present inside 2-Do-App-JavaFX/2DoApp.
+## run the project
+
+# For Running the App on Windows Machine.
+
+## first run the 2-Do-App-JavaFX\2DoApp\src\sample\DataBaseConfig\CreateDatabaseSupport.java file to create the required DB.Enter port no , username , password
+## for your mysql DB.
+## open Windows EXE Folder and run the file.
+
+# Note : Application may not repond for few seconds after signUp page as SMTP Server takes time to send Email.  
 
 
 ![alt text](https://github.com/biku1998/2-Do-App-JavaFX/blob/master/Screenshots/screenshotSignUp.png)

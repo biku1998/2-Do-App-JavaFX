@@ -9,10 +9,16 @@ import javafx.fxml.FXMLLoader;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import org.controlsfx.control.textfield.TextFields;
+import sample.model.ConnectionProvider;
 import sample.model.MainModel;
 import sample.model.ServiceProvider;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -44,7 +50,7 @@ public class LoginController {
             // Sending user to SignUp
 
             try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/signUp.fxml"));
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/sample/fxml/signUp.fxml"));
                 rootPaneLogin.getChildren().setAll(pane);
             }
             catch (Exception e)
@@ -67,14 +73,16 @@ public class LoginController {
             }
             else
             {
-                if (MainModel.verifyUserFromFileDB(username.trim(),password.trim()))
+                if (MainModel.verifyUserFromDB(username.trim(),password.trim()))
                 {
                     try {
                         // setting the current user.
-                        setUpCurrentUser(username.trim());
-
+                        //setUpCurrentUser(username.trim());
+                        String name = getCurrentUserName(username.trim());
+                        OtpController.updateCurrentUser(username.trim(),name);
                         //sending the user to the task page.
-                        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Task.fxml"));
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("/sample/fxml/Task.fxml"));
+//                        AnchorPane pane = FXMLLoader.load(getClass().getResource("/sample/fxml/Task.fxml"));
                         rootPaneLogin.getChildren().setAll(pane);
                     }
                     catch (Exception e)
@@ -89,64 +97,57 @@ public class LoginController {
             }
         });
 
+        // adding autocomplete .
 
-        JFXAutoCompletePopup<String> autoCompletePopup = new JFXAutoCompletePopup<>();
-        //autoCompletePopup.setStyle("-fx-background-color : #e91e63;");
-        autoCompletePopup.setSelectionHandler(event -> loginUsername.setText(event.getObject()));
-        autoCompletePopup.getSuggestions().addAll(ServiceProvider.getAllEmails());
-        loginUsername.textProperty().addListener(observable ->{
-            autoCompletePopup.filter(s -> s.contains(loginUsername.getText()));
-            if(!autoCompletePopup.getFilteredSuggestions().isEmpty()){
-                autoCompletePopup.show(loginUsername);
-            }else{
-                autoCompletePopup.hide();
-            }
-        });
+         ArrayList<String> allEmails = getAllEmailList();
 
+        TextFields.bindAutoCompletion(loginUsername,allEmails);
 
     }
 
-    private void setUpCurrentUser(String email)
-    {
-        try
-        {
+    private ArrayList<String> getAllEmailList() {
 
-            String pwd = ServiceProvider.getPath();
+        ArrayList<String> usersEmail = new ArrayList<>();
 
-            String path = pwd+"/src/sample/Data/currentUser.txt";
+        try {
 
-            FileOutputStream fos = new FileOutputStream(path,false);
+            Connection connection = ConnectionProvider.getConnection("TODO");
+            Statement st = connection.createStatement();
 
-            //fos.write(email.getBytes());
-
-            FileInputStream fis = new FileInputStream(pwd+"/src/sample/Data/user.txt");
-
-            Scanner scanner = new Scanner(fis);
-
-            while(scanner.hasNext())
-            {
-                String identifier = scanner.nextLine().trim();
-                String nameData = scanner.nextLine().split(":")[1].trim();
-                String emailData = scanner.nextLine().split(":")[1].trim();
-                String passwordData = scanner.nextLine().split(":")[1].trim();
-
-
-                if (email.equalsIgnoreCase(emailData))
-                {
-                    String data = String.format("!\nname : %s\nemail : %s\npassword : %s\n",nameData,
-                            emailData,passwordData);
-                    fos.write(data.getBytes());
-                }
-
+            ResultSet rs = st.executeQuery("select * from user");
+            while (rs.next()){
+                usersEmail.add(rs.getString("email"));
             }
-
-
-
+            return usersEmail;
         }
         catch (Exception e)
         {
             ServiceProvider.showException(e);
         }
+
+        return null;
     }
+
+    private String getCurrentUserName(String username) {
+
+        try {
+            Connection conn = ConnectionProvider.getConnection("TODO");
+            Statement st = conn.createStatement();
+
+            ResultSet rs = st.executeQuery("select * from user where email = '"+username+"'");
+            String name = "";
+            if (rs.next())
+            {
+                name  = rs.getString("name");
+            }
+            return name;
+        }
+        catch (Exception e){
+            ServiceProvider.showException(e);
+        }
+
+        return null;
+    }
+
 
 }

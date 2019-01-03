@@ -3,13 +3,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.model.ServiceProvider;
-
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
-
 
 public class Main extends Application {
 
@@ -18,7 +11,7 @@ public class Main extends Application {
 
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("sample/fxml/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("sample/fxml/Task.fxml"));
         primaryStage.setTitle("2-Do-App");
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.setResizable(false);
