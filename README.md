@@ -15,7 +15,7 @@
 
 ## first run the 2-Do-App-JavaFX\2DoApp\src\sample\DataBaseConfig\CreateDatabaseSupport.java file to create the required DB.Enter port no , username , password
 ## for your mysql DB.
-## open Windows EXE Folder and run the file.
+## open this link and download the file(https://drive.google.com/open?id=13iB2YUMuuUF0ubKxxoYwqRRMBGtSPpWT).
 
 # Note : Application may not repond for few seconds after signUp page as SMTP Server takes time to send Email.  
 
