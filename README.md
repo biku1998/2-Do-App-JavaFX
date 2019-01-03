@@ -3,11 +3,13 @@
 # ToyApp : 2do app using JavaFX
 # *****************************
 
-# Instructions to run.
+# Instructions to run and build.
 
 ## open the project with Intellij IDE.
 ## open the project present inside 2-Do-App-JavaFX/2DoApp.
-## run the project
+## first run the 2-Do-App-JavaFX\2DoApp\src\sample\DataBaseConfig\CreateDatabaseSupport.java file to create the required DB.Enter port no , username , password.
+## change the DB Configration under  2-Do-App-JavaFX\2DoApp\src\sample\Model\ConnectionProvider.java.
+## run the project.
 
 # For Running the App on Windows Machine.
 

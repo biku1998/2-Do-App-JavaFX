@@ -1,5 +1,5 @@
 package sample.DataBaseConfig;
-import sample.model.ServiceProvider;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -11,7 +11,7 @@ public class CreateDatabaseSupport {
             String port_no = "3306"; // your mysql port no here.
             String url = "jdbc:mysql://localhost:"+port_no+"/"+"information_schema"+"?autoReconnect=true&useSSL=false";
             String usr = "root"; // your username for mysql.
-            String password = "root"; // your password for sql.
+            String password = "rootuser"; // your password for sql.
             Connection connection = DriverManager.getConnection(url,usr,password);
             Statement st = connection.createStatement();
             String sql1 = "create database TODO";
@@ -28,7 +28,7 @@ public class CreateDatabaseSupport {
         }
         catch (Exception e)
         {
-            ServiceProvider.showException(e);
+            e.printStackTrace();
         }
     }
 }

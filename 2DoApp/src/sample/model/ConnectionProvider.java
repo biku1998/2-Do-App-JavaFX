@@ -17,7 +17,7 @@ public class ConnectionProvider {
 
         String url = "jdbc:mysql://localhost:"+port_no+"/"+db_name+"?autoReconnect=true&useSSL=false";
         String usr = "root"; // your username for mysql.
-        String password = "root"; // your password for sql.
+        String password = "rootuser"; // your password for sql.
         try
         {
             conn = DriverManager.getConnection(url,usr,password);
