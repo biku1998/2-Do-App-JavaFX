@@ -6,11 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+=======
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/DataBaseConfig/CreateDatabaseSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DataBaseConfig/CreateDatabaseSupport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/model/ConnectionProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/model/ConnectionProvider.java" afterDir="false" />
     </list>
+>>>>>>> 30d6d0ac53349adef76d59663fabb570d8f9907b
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -69,6 +73,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/controller/TaskController.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="3682">
+              <caret line="308" column="7" selection-start-line="308" selection-start-column="7" selection-end-line="308" selection-end-column="7" />
+=======
             <state relative-caret-position="243">
               <caret line="262" column="48" lean-forward="true" selection-start-line="262" selection-start-column="48" selection-end-line="262" selection-end-column="48" />
             </state>
@@ -95,6 +103,7 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+>>>>>>> 30d6d0ac53349adef76d59663fabb570d8f9907b
             </state>
           </provider>
         </entry>
@@ -171,7 +180,11 @@
     </treeState>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+<<<<<<< HEAD
+  <component name="ProjectFrameBounds" extendedState="6">
+=======
   <component name="ProjectFrameBounds" fullScreen="true">
+>>>>>>> 30d6d0ac53349adef76d59663fabb570d8f9907b
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1386" />
@@ -242,7 +255,11 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546521922861" />
+=======
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546527856452" />
+>>>>>>> 30d6d0ac53349adef76d59663fabb570d8f9907b
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -646,6 +663,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/controller/TaskController.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="3682">
+          <caret line="308" column="7" selection-start-line="308" selection-start-column="7" selection-end-line="308" selection-end-column="7" />
+=======
         <state relative-caret-position="243">
           <caret line="262" column="48" lean-forward="true" selection-start-line="262" selection-start-column="48" selection-end-line="262" selection-end-column="48" />
         </state>
@@ -658,6 +679,7 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+>>>>>>> 30d6d0ac53349adef76d59663fabb570d8f9907b
         </state>
       </provider>
     </entry>
